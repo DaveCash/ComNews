@@ -13,3 +13,24 @@
 .news-post{
 	border-bottom: 1px solid black;
 }
+
+.news-post h1{
+	margin-bottom: 0px;
+}
+
+.news-post label{
+	display: inline-block;
+	margin-top: 10px;
+	margin-bottom: 20px;
+}
+
+.menu-login{
+	margin: 0px;
+	position: absolute;
+	right: 20px;
+	top: 11px;
+}
+
+.menu-login li{
+	float: left;
+}

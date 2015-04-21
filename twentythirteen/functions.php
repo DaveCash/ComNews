@@ -553,12 +553,16 @@ add_action( 'customize_preview_init', 'twentythirteen_customize_preview_js' );
 
 function front_page($atts){
 	global $wpdb;
-	$topics = $wpdb->get_results("SELECT * FROM  `wp_posts` WHERE post_parent = 8 AND post_type =  'topic'");
+	$topics = $wpdb->get_results("SELECT * FROM  `wp_posts` WHERE post_parent = 8 AND post_type =  'topic' ORDER BY post_date DESC");
 	
 	$retStr = "<div>";
 	foreach($topics as $topic){
+		$postDateStr = explode(" ", $topic->post_date)[0];
+		$postDate = DateTime::createFromFormat('Y-m-d', $postDateStr);
+	
 		$retStr .= "<div class='news-post'>";
 		$retStr .= '<h1>' . $topic->post_title . '</h1>';
+		$retStr .= "<label>Posted: {$postDate->format('d.m.Y')}</label>";
 		$retStr .= "<p class='ellipsis'>" . $topic->post_content . '</p>';
 		$retStr .= "<a href='?topic=". $topic->post_name ."'>Read more...</a>";
 		$retStr .= "</div>";
